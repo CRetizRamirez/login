@@ -15,12 +15,6 @@ dotenv.config({ path: envFile });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// const corsOptions = {
-//     origin: 'https://login.retizdev.com', // Dominio de tu front-end
-//     credentials: true, // Si usas cookies o sesiones
-// };
-
-
 dotenv.config();
 
 const app = express();
@@ -32,11 +26,7 @@ app.use("/api/protected", verifyToken); // Todas las rutas bajo /api/protected u
 app.use('/api', routes); // Todas las rutas que haya en Routes.js
 
 // Middleware para servir los archivos estáticos de React
-app.use(express.static(path.join(__dirname, 'dist')));
-// Ruta genérica para redirigir a React en caso de rutas no manejadas por el backend
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-//   });  
+app.use(express.static(path.join(__dirname, 'dist')));  
 
 // Probar la conexión a la base de datos, solo en desarrollo
 /*db.getConnection((err) => {
