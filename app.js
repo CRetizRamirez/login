@@ -3,43 +3,28 @@ import express from 'express'
 import cors from 'cors'
 import path from 'path';
 import { fileURLToPath } from 'url';
-import db from './database/db.js'  // SE USA PARA PROBAR LA CONEXION A LA DB
 import routes from './routes/Routes.js'
 import { verifyToken } from "./middlewares/authMiddleware.js";
 
-// Determina qué archivo de configuración cargar
-const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
-dotenv.config({ path: envFile });
+dotenv.config();
 
-// Define __dirname en modo ES Modules
+// Define __dirname en modo ES Modules, para leer los archivos estaticos de React
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
-
 const app = express();
 
-//app.use(cors(corsOptions));
 app.use(cors());
 app.use(express.json())
-app.use("/api/protected", verifyToken); // Todas las rutas bajo /api/protected usarán este middleware
-app.use('/api', routes); // Todas las rutas que haya en Routes.js
-
-// Middleware para servir los archivos estáticos de React
-app.use(express.static(path.join(__dirname, 'dist')));  
-
-// Probar la conexión a la base de datos, solo en desarrollo
-/*db.getConnection((err) => {
-    if (err) {
-        console.error("Error al conectar con la base de datos:", err.message);
-    } else {
-        console.log("Conexión exitosa a la base de datos");
-    }
-});*/
-
+app.use("/api/protected", verifyToken);
+app.use('/api', routes); 
+app.use(express.static(path.join(__dirname, 'dist')));  // Middleware para servir los archivos estáticos de React
 
 // Iniciar el servidor
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const DB_HOST = process.env.DB_HOST;
+
 app.listen(SERVER_PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${SERVER_PORT}`);
+    console.log(`Servidor corriendo en el puerto: ${SERVER_PORT}`);
+    console.log(`Dominio: ${DB_HOST}`);
 });
