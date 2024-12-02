@@ -15,15 +15,13 @@ app.use(express.json())
 app.use("/api/protected", verifyToken);
 app.use('/api', routes); 
 
-// ***** Para que pueda trabajar con la carpeta dist del Front *****
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// ***** Para que pueda trabajar con la carpeta dist de React *****
+const __filename = fileURLToPath(import.meta.url);  // mpm i url
+const __dirname = path.dirname(__filename);  // npm i path
 app.use(express.static(path.join(__dirname, 'dist')));  // Middleware para servir los archivos estáticos de React
-// Redirigir todas las demás rutas al frontend (React)
-app.get('*', (req, res) => {
+app.get('*', (req, res) => {  // Redirigir todas las demás rutas al frontend de React y no se salga al refrescar la pagina
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   });
-
 
 // Iniciar el servidor
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
