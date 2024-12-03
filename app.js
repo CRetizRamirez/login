@@ -4,7 +4,6 @@ import cors from 'cors'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import routes from './routes/Routes.js'
-import { verifyToken } from "./middlewares/authMiddleware.js";
 
 dotenv.config();
 
@@ -12,7 +11,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json())
-app.use("/api/protected", verifyToken);
 app.use('/api', routes); 
 
 // ***** Para que pueda trabajar con la carpeta dist de React *****
