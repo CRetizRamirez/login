@@ -3,10 +3,12 @@ import { login } from "../controllers/LoginController.js";
 import ProductosController from "../controllers/productosController.js"
 import { verifyToken } from "../middlewares/authMiddleware.js";
 import { refreshToken } from "../middlewares/refreshToken.js";
+import { registrarUsuario } from "../controllers/registrarUsuarioController.js";    
 
 const router = express.Router();
 
 router.post("/login", login);  // Ruta de login
+router.post("/registrar", registrarUsuario);
 router.post("/refresh-token", refreshToken);  //Refresca el Token
 router.get("/protected", verifyToken, (req, res) => {  // Esto proteje todas las rutas
     res.json({

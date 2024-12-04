@@ -27,5 +27,5 @@ const DB_HOST = process.env.DB_HOST;
 
 app.listen(SERVER_PORT, () => {
     console.log(`Servidor corriendo en el puerto: ${SERVER_PORT}`);
-    console.log(`Host de la DB: ${DB_HOST}`);
+    //console.log(`Host de la DB: ${DB_HOST}`);
 });
