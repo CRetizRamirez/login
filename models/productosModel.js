@@ -2,7 +2,7 @@ import db from '../database/db.js'
 
 const ProductosModel = {
     listarProductos: async () => {
-        const [rows] = await db.promise().query('CALL sp_ListarProductos()'); //Para listar debe llevar promise()
+        const [rows] = await db.query('CALL sp_ListarProductos()'); //Para listar debe llevar promise()
         return rows[0];
     },
 
