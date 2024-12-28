@@ -22,7 +22,7 @@ app.get('*', (req, res) => {  // Redirigir todas las demás rutas al frontend de
   });
 
 // Iniciar el servidor
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const SERVER_PORT = process.env.SERVER_PORT || 3001;
 const DB_HOST = process.env.DB_HOST;
 
 app.listen(SERVER_PORT, () => {
