@@ -7,9 +7,17 @@ import routes from './routes/Routes.js'
 
 dotenv.config();
 
+const corsOptions = {
+  origin: ['http://34.57.24.192:3000', 'http://34.57.24.192:3001'], // Agrega aquí las URLs permitidas
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+  credentials: true // Permitir cookies si son necesarias
+};
+
 const app = express();
 
-app.use(cors());
+//app.use(cors());
+app.use(cors(corsOptions));  // Middleware para permitir CORS
 app.use(express.json())
 app.use('/api', routes); 
 
