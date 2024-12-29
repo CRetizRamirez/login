@@ -12,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 app.use('/api', routes); 
+app.use('/',(req, res) => res.send('Bienvenido a la API de la app de tareas!'));
 
 // ***** Para que pueda trabajar con la carpeta dist de React *****
 const __filename = fileURLToPath(import.meta.url);  // mpm i url
