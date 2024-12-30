@@ -5,7 +5,12 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import routes from './routes/Routes.js'
 
-dotenv.config();
+// Determinar el entorno actual, desarrollo o produccion
+const environment = process.env.NODE_ENV || 'development';
+// Cargar el archivo .env correspondiente
+dotenv.config({ path: `.env.${environment}` });
+console.log(`Entorno actual: ${environment}`);
+console.log(`Servidor corriendo en el puerto: ${process.env.SERVER_PORT}`);
 
 const app = express();
 
