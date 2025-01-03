@@ -10,7 +10,7 @@ const environment = process.env.NODE_ENV || 'development';
 // Cargar el archivo .env correspondiente
 dotenv.config({ path: `.env.${environment}` });
 console.log(`Entorno actual: ${environment}`);
-console.log(`Servidor corriendo en el puerto: ${process.env.SERVER_PORT}`);
+//console.log(`Servidor corriendo en el puerto: ${process.env.SERVER_PORT}`);
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.get('*', (req, res) => {  // Redirigir todas las demás rutas al frontend de
 
 // Iniciar el servidor
 const SERVER_PORT = process.env.SERVER_PORT || 3001;
-const DB_HOST = process.env.DB_HOST;
+//const DB_HOST = process.env.DB_HOST;
 
 app.listen(SERVER_PORT, () => {
     console.log(`Servidor corriendo en el puerto: ${SERVER_PORT}`);
