@@ -9,7 +9,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://api2.retizdev.com', 'https://api2.retizdev.com', 'http://34.29.48.251:3001'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json())
 app.use('/api', routes); 
 //app.use('/',(req, res) => res.send('Bienvenido a la API de la app de tareas!'));
